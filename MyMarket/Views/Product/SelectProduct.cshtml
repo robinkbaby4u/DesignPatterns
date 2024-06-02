@@ -1,0 +1,63 @@
+﻿@model MyMarket.ViewModels.ProductViewModel
+
+@{
+    ViewData["Title"] = "Select";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+    <h4>@Model.Product.ProductName</h4>
+    <hr />
+    <form asp-action="SelectProduct">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+        <div class="row">
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Product.Description)
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.Product.Description)
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </div>
+            <div class="col-sm-3 form-group">
+                <input asp-for="ProductPrice" class="form-control" />
+                <span asp-validation-for="ProductPrice" class="text-danger"></span>
+            </div>
+            <div class="col-sm-3  form-group">
+                @Html.DropDownListFor(m => m.ProductCurrency, new SelectList(Enum.GetValues(typeof(MyMarket.Business.Domain.Currency))), "Select")
+                <span asp-validation-for="ProductCurrency" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CustomerAmount)
+            </div>
+            <div class="col-sm-3  form-group">
+                <input asp-for="CustomerAmount" class="form-control" />
+                <span asp-validation-for="CustomerAmount" class="text-danger"></span>
+            </div>
+            <div class="col-sm-3 form-group">
+                @Html.DropDownListFor(m => m.CustomerCurrency, new SelectList(Enum.GetValues(typeof(MyMarket.Business.Domain.Currency))), "Select")
+                <span asp-validation-for="CustomerCurrency" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-2 form-group">
+                <input type="submit" value="Buy" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

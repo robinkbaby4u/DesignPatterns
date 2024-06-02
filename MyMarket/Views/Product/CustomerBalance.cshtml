@@ -1,0 +1,53 @@
+﻿@model MyMarket.ViewModels.ProductViewModel
+
+@{
+    ViewData["Title"] = "CustomerBalance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+    <h4>Customer Balance</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-12">
+            You supplied @Model.CustomerAmount @Model.CustomerCurrency with a product price of @Model.ProductPrice @Model.CustomerCurrency
+        </dt>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductPrice)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductPrice)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CustomerCurrency)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CustomerCurrency)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CustomerAmount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CustomerAmount)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BalanceAmount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BalanceAmount)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Denominations)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.Raw(Model.Denominations)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
